@@ -1,0 +1,147 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.header{
+  width: 1200px;
+  height: 70px;
+  box-sizing: border-box;
+  background-color: #8EC3B0;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.header > span{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.form {
+  width: 1200px;
+  height: 90px;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  background-color: #DEF5E5;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form > span {
+  font-size: 18px;
+}
+
+.form > input {
+  height: 27px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid #B2B2B2;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.form > input:focus {
+  outline: none;
+}
+
+.plusBtn {
+  height: 35px;
+  width: 120px;
+  border-radius: 20px;
+  border: transparent;
+  background-color: #8EC3B0;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.list{
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+
+}
+
+.list-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.list-wrapper{
+  border: 5px solid #9ED5C5;
+  border-radius: 20px;
+  padding: 50px 20px;
+  height: 200px;
+  width: 300px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list_text{
+  text-align: center;
+}
+
+.todo-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 250px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.todo-content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 250px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.deleteBtn {
+  margin-right: 15px;
+  height: 35px;
+  width: 100px;
+  border-radius: 20px;
+  border: transparent;
+  background-color: #8EC3B0;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.doneBtn {
+  height: 35px;
+  width: 100px;
+  border-radius: 20px;
+  border: transparent;
+  background-color: #acaaed;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  height: 35px;
+  width: 100px;
+  border-radius: 20px;
+  border: transparent;
+  background-color: #FF9F9F;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
