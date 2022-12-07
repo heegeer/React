@@ -23,6 +23,8 @@ function App () {
   }
 
   const addContent = () => {
+
+    if( title !== '' && content !== '') {
     const newTodo = {
       id: todo.length + 1,
       title,
@@ -39,6 +41,9 @@ function App () {
     //input창 지워주기
     setTitle('')
     setContent('')
+    } else {
+      alert('제목과 내용을 모두 입력해주세요')
+    }
   }
 
   const deleteHandler = (id) => {
