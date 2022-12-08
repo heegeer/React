@@ -51,27 +51,3 @@
     font-weight: bold;
     cursor: pointer;
 }
-  
-.doneBtn {
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: transparent;
-    background-color: #acaaed;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-  
-.cancelBtn {
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: transparent;
-    background-color: #FF9F9F;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}

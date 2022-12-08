@@ -3,7 +3,7 @@ import Button from '../button/Button';
 
 function Todolist (props) {
 
-  const { list, doneHandler, cancelHandler, deleteHandler } = props;
+  const { list, deleteHandler, changeDoneHandler } = props;
 
     return(
       <div className="list-container">
@@ -14,7 +14,7 @@ function Todolist (props) {
           </div>
           <div className="todo-button">
             <button onClick={() => deleteHandler(list.id)} className="deleteBtn">삭제</button>
-            <Button cancelHandler={cancelHandler} doneHandler={doneHandler} list={list} key={list.id} />
+            <Button changeDoneHandler={changeDoneHandler} list={list} key={list.id} />
           </div>
         </div>
       </div>
