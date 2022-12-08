@@ -4,3 +4,10 @@
   align-items: center;
   margin-bottom: 50px;
 }
+
+.list{
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+}

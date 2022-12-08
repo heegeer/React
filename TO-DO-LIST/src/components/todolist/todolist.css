@@ -1,17 +1,10 @@
-.list{
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 50px;
-}
-  
 .list-container{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
   
-.list-wrapper{
+.list-card{
     border: 5px solid #9ED5C5;
     border-radius: 20px;
     padding: 50px 20px;

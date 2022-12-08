@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/header/Header";
 import Form from "./components/form/Form";
-import {Todo, Done} from "./components/todolist/Todolist";
+import Todolist from "./components/todolist/Todolist";
 import './App.css'
 
 function App () {
@@ -25,7 +25,6 @@ function App () {
   
   // [추가하기] 버튼 눌렀을 때 동작
   const addHandler = () => {
-
     if( title !== '' && content !== '') {
       const newTodo = {
         id: todo.length === 0 ? 0 : todo.length,
@@ -42,6 +41,7 @@ function App () {
       //input창 지워주기
       setTitle('')
       setContent('')
+
     } else {
       alert('제목과 내용을 모두 입력해주세요.')
     }
@@ -62,7 +62,7 @@ function App () {
     let copy = [...todo]
     // const newTodolist = copy.filter((list) => list.id === id);
     // console.log(newTodolist)
-    todo[id - 1].isDone = false;
+    todo[id].isDone = false;
     setTodo(copy);
     console.log(todo)
   };
@@ -84,18 +84,18 @@ function App () {
         <div className="list-container">
           {todo.map((list) => {
             if (list.isDone === false) 
-              return <Todo doneHandler={doneHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
+              return <Todolist doneHandler={doneHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
           })}
         </div>
       </div>
 
-      {/* 완료 isDone flase->true로 바꾸고 map return에 조건(삼항연산자 혹은 if문) 달기 */}
+      {/* 완료 isDone flase->true로 바꾸고 map에 조건(삼항연산자 혹은 if문) 달기 */}
       <div className="list">
         <h2>Done..! 🎉</h2>
         <div className="list-container">
           {todo.map((list) => {
             if (list.isDone === true) {
-              return <Done cancelHandler={cancelHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
+              return <Todolist cancelHandler={cancelHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
             }
           })}
         </div>
