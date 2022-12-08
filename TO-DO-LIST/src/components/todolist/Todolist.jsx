@@ -1,11 +1,11 @@
-import '../App.css'
+import './todolist.css'
 
 function Todo (props) {
     return(
       <div className="list-wrapper">
         <div className="list_text">
-          <h2 className="todo-title">{props?.list?.title}</h2>
-          <p className="todo-content">{props?.list?.content}</p>
+          <h2 className="todo-title">{props.list.title}</h2>
+          <p className="todo-content">{props.list.content}</p>
         </div>
         <div className="todo-button">
           <button onClick={() => props.deleteHandler(props.list.id)} className="deleteBtn">삭제</button>
@@ -19,8 +19,8 @@ function Todo (props) {
     return(
       <div className="list-wrapper">
         <div className="list_text">
-          <h2 className="todo-title">{props?.list?.title}</h2>
-          <p className="todo-content">{props?.list?.content}</p>
+          <h2 className="todo-title">{props.list.title}</h2>
+          <p className="todo-content">{props.list.content}</p>
         </div>
         <div className="todo-button">
           <button onClick={() => props.deleteHandler(props.list.id)} className="deleteBtn">삭제</button>

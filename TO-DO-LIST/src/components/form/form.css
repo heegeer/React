@@ -1,0 +1,39 @@
+.form {
+    width: 1200px;
+    height: 90px;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    background-color: #DEF5E5;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+.form > span {
+    font-size: 18px;
+}
+  
+.form > input {
+    height: 27px;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid #B2B2B2;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+  
+.form > input:focus {
+    outline: none;
+}
+  
+.plusBtn {
+    height: 35px;
+    width: 120px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: #8EC3B0;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
