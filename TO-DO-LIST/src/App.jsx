@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Form from "./components/form/Form";
 import TodoList from "./components/todolist/TodoList";
 import './App.css';
-// import {inputContent, addHandler, deleteHandler, cancelHandler, doneHandler} from './App.js'
+// import {inputContent, addHandler, deleteHandler, changeDoneHandler} from './App.js'
 
 function App () {
 
@@ -69,9 +69,6 @@ function App () {
 
   // [삭제] 버튼 눌렀을 때 동작
   const deleteHandler = (id) => {
-      // setTodo((abc) => {
-      //   return abc.filter((def) => def.id !== id)
-      // })
       const newTodolist = todo.filter((list) => (list.id !== id));
       setTodo(newTodolist);
   }
@@ -97,6 +94,12 @@ function App () {
       <TodoList 
         todo={todo} 
         isDone={false}
+        changeDoneHandler={changeDoneHandler}
+        deleteHandler={deleteHandler}
+      />
+      <TodoList 
+        todo={todo} 
+        isDone={true}
         changeDoneHandler={changeDoneHandler}
         deleteHandler={deleteHandler}
       />

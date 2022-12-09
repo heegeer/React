@@ -6,11 +6,12 @@
     background-color: #DEF5E5;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
   
 .form > span {
     font-size: 18px;
+    width: 40px;
 }
   
 .form > input {
@@ -19,7 +20,7 @@
     border-radius: 10px;
     border: 1px solid #B2B2B2;
     padding: 5px 10px;
-    margin-right: 10px;
+    margin-right: 25px;
 }
   
 .form > input:focus {
@@ -42,6 +43,10 @@
     .form {
         width: 100%;
     }
+
+    .form > span {
+        width: 65px;
+    }
 }
 
 @media (max-width: 750px) {
@@ -53,7 +58,7 @@
     }
 
     .form > input {
-        width: 80%;
+        width: 72%;
     }
 }
 
@@ -63,6 +68,10 @@
         height: 290px;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .form > span {
+        width: 40px;
     }
 
     .form > input {

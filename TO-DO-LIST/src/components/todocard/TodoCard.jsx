@@ -15,6 +15,7 @@ function TodoCard (props) {
           </div>
           <div className="todo-button">
             <button onClick={() => deleteHandler(list.id)} className="deleteBtn">삭제</button>
+            {/* isDone 값에 따라 [취소] [완료] 버튼이 결정됨 */}
             <Button changeDoneHandler={changeDoneHandler} list={list} key={list.id} />
           </div>
         </div>
