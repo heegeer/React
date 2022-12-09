@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import Header from "./components/header/Header";
 import Form from "./components/form/Form";
-import Todolist from "./components/todolist/Todolist"
-import './App.css'
+import TodoList from "./components/todolist/TodoList";
+import './App.css';
 // import {inputContent, addHandler, deleteHandler, cancelHandler, doneHandler} from './App.js'
 
 function App () {
@@ -81,45 +81,25 @@ function App () {
     let copy = [...todo]
     const isDoneChange = copy.map((list) => 
       list.id === id ? {...list, isDone: !list.isDone} : list
-      // if (list.id === id) {
-      //   return {...list, isDone: !list.isDone}
-      // } else {
-      //   return list
-      // } if문은 중괄호 추가
     );
-    
-    // let copy = [...todo]
-    // todo[id].isDone = false;
     setTodo(isDoneChange);
   };
 
   return (
     <div className="wrap">
       <Header />
-      <Form title={title} content={content} inputContent={inputContent} addHandler={addHandler} />
-
-      <div className="list">
-        <h2>Working.. 🔥</h2>
-        <div className="list-container">
-          {todo.map((list) => {
-            if (list.isDone === false) 
-              return <Todolist changeDoneHandler={changeDoneHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
-          })}
-        </div>
-      </div>
-
-      {/* 완료 isDone flase->true로 바꾸고 map에 조건(삼항연산자 혹은 if문) 달기 */}
-      <div className="list">
-        <h2>Done..! 🎉</h2>
-        <div className="list-container">
-          {todo.map((list) => {
-            if (list.isDone === true) {
-              return <Todolist changeDoneHandler={changeDoneHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
-            }
-          })}
-        </div>
-      </div>
-
+      <Form 
+        title={title} 
+        content={content} 
+        inputContent={inputContent} 
+        addHandler={addHandler} 
+      />
+      <TodoList 
+        todo={todo} 
+        isDone={false}
+        changeDoneHandler={changeDoneHandler}
+        deleteHandler={deleteHandler}
+      />
     </div>
   );
 };

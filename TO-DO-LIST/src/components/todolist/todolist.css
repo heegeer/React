@@ -1,53 +1,38 @@
+.list{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+}
+
 .list-container{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
-  
-.list-card{
-    border: 5px solid #9ED5C5;
-    border-radius: 20px;
-    padding: 50px 20px;
-    height: 200px;
-    width: 300px;
-    margin-right: 20px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+@media (max-width: 1200px) {
+    .list {
+        width: 100%;
+    }
+
+    .list-container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 }
-  
-.list_text{
-    text-align: center;
-}
-  
-.todo-title {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 250px;
-    white-space: nowrap;
-    margin-bottom: 10px;
-}
-  
-.todo-content {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 250px;
-    white-space: nowrap;
-    margin-bottom: 20px;
-}
-  
-.deleteBtn {
-    margin-right: 15px;
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: transparent;
-    background-color: #8EC3B0;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+
+@media (max-width: 750px) {
+    .list > h2 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
 }

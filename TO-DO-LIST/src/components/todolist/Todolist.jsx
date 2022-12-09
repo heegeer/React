@@ -1,39 +1,22 @@
-import './todolist.css'
-import Button from '../button/Button';
+import TodoCard from '../todocard/TodoCard';
+import './todolist.css';
 
-function Todolist (props) {
+function TodoList (props) {
+    
+    const { todo, isDone, changeDoneHandler, deleteHandler } = props;
 
-  const { list, deleteHandler, changeDoneHandler } = props;
-
-    return(
-      <div className="list-container">
-        <div className="list-card">
-          <div className="list_text">
-            <h2 className="todo-title">{list.title}</h2>
-            <p className="todo-content">{list.content}</p>
-          </div>
-          <div className="todo-button">
-            <button onClick={() => deleteHandler(list.id)} className="deleteBtn">삭제</button>
-            <Button changeDoneHandler={changeDoneHandler} list={list} key={list.id} />
-          </div>
-        </div>
-      </div>
-    );
+        return (
+            <div className="list">
+                <h2>{ isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
+                <div className="list-container">
+                    {todo.filter((list) => list.isDone === isDone)
+                    .map((list) => {
+                        return (<TodoCard changeDoneHandler={changeDoneHandler} deleteHandler={deleteHandler} list={list} key={list.id} />
+                    );
+                    })}
+                </div>
+            </div>
+        );
 };
-  
-// function Done (props) {
-//     return(
-//       <div className="list-card">
-//         <div className="list_text">
-//           <h2 className="todo-title">{props.list.title}</h2>
-//           <p className="todo-content">{props.list.content}</p>
-//         </div>
-//         <div className="todo-button">
-//           <button onClick={() => props.deleteHandler(props.list.id)} className="deleteBtn">삭제</button>
-//           <button onClick={() => props.cancelHandler(props.list.id)} className="cancelBtn">취소</button>
-//         </div>
-//       </div>
-//     );
-// };
 
-export default Todolist;
+export default TodoList;
