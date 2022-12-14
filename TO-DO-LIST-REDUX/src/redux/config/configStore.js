@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from "redux";
-import todos from "../modules/todolist";
+import todos from "../modules/todos";
 
 // Reducer 생성
 const rootReducer = combineReducers({

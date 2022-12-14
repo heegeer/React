@@ -1,11 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTodo } from "../../redux/modules/todos";
 import Button from '../button/Button';
 import './todolist.css';
 
 function TodoList ({isDone}) {
     
-    const todos = useSelector((state) => state.todos.todos);
+    const todos = useSelector((state) => state.todos);
+    const dispatch = useDispatch();
 
+    // [삭제] 버튼 눌렀을 때 실행됨
+    const deleteHandler = (id) => {
+        dispatch(deleteTodo(id))
+    }
+   
     return (
         <div className="list">
             {/* 제목 변경-isDone이 false면 Working, true면 Done */}
@@ -22,7 +29,7 @@ function TodoList ({isDone}) {
                                     <p className="todo-content">{list.content}</p>
                                 </div>                        
                                 <div className="todo-button">
-                                    <button className="deleteBtn">삭제</button>
+                                    <button onClick={() => deleteHandler(list.id)} className="deleteBtn">삭제</button>
                                     <Button list={list} key={list.id}/>
                                 </div>
                             </div>
