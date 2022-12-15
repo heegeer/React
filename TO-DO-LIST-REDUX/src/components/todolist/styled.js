@@ -89,7 +89,7 @@ const TodoContent = styled.p`
     overflow: hidden;
     width: 250px;
     white-space: nowrap;
-    margin-bottom: 20px;
+    margin: 10px 0 20px 0;
     display: flex;
     justify-content: center;
 `

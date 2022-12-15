@@ -5,10 +5,14 @@ const StDetail = styled.div`
     width: 1200px;
     display: flex;
     flex-direction: column;
-    background-color: #DEF5E5;
+    /* background-color: #DEF5E5; */
     padding: 30px 40px 100px 40px;
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: 680px) {
+        width: 100%;
+    }
 `
 
 const DetailBox = styled.div`
@@ -22,6 +26,10 @@ const BtnBox = styled.div`
     justify-content: end;
     width: 55%;
     margin-right: 10px;
+
+    @media only screen and (max-width: 680px) {
+        width: 99%;
+    }
 `
 
 const MoveBtn = styled.button`
@@ -49,19 +57,46 @@ const DetailTextBox = styled.div`
     border: 5px solid #9ED5C5;
     padding: 15px 30px 25px 30px;
 
+    @media only screen and (max-width: 680px) {
+        width: 99%;
+    }
 `
 
 const ID = styled.p`
     margin: 0;
 `
 
-const Title = styled.h1`
-    margin: 10px 0 10px 0;
+const EditForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
 `
 
-const Content = styled.p`
+const TitleInput = styled.input`
+    border: transparent;
+    padding: 12px 5px;
+    font-size: 2em;
+    font-weight: bold;
+    white-space: pre-wrap;
+    border-bottom: 1px solid #B2B2B2;
+
+    :focus {
+        outline: none;
+    }
+`
+
+const ContentInput = styled.input`
+    border: transparent;
+    padding: 12px 5px;
     font-size: 20px;
-    margin: 15px 0 30px 0;
+    line-height: 1.38; 
+
+    :focus {
+        outline: none;
+    }
 `
 
 const Btn = styled.button`
@@ -81,4 +116,4 @@ const Btn = styled.button`
     }
 `
 
-export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content, Btn }
+export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, EditForm, TitleInput, ContentInput, Btn }

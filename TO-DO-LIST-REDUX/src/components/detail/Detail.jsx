@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { deleteTodo, changeDone } from "../../redux/modules/todos";
-import { StDetail, DetailBox, BtnBox, DetailTextBox, ID, Title, Content, Btn } from "./styled";
+import { StDetail, DetailBox, MoveBtn, BtnBox, DetailTextBox, ID, Title, Content, Btn } from "./styled";
 
 function Detail()  {
 
@@ -28,16 +28,17 @@ function Detail()  {
             <DetailBox>
                 <BtnBox>
                     <Link to={"/"}>
-                        <Btn backgroundColor={"#8EC3B0"} >
+                        <MoveBtn backgroundColor={"#8EC3B0"} >
                             <span>이전으로</span>
-                        </Btn>
+                        </MoveBtn>
                     </Link>
                 </BtnBox>
                 <DetailTextBox>
-                    <ID>ID: {todo.id.slice(0, 4)}</ID>
+                    <ID>ID: {todo.id.slice(0, 8)}</ID>
                     <h2>{ todo.isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
                     <Title>{todo.title}</Title>
                     <Content>{todo.content}</Content>
+                    {/* Btn에 props로 backgroundColor를 전달함 */}
                     <Btn backgroundColor={"#f9ba86"} 
                     onClick={() => navigate(`/edit/${todo.id}`)}>수정</Btn>     
                     <Btn backgroundColor={"#8EC3B0"} 

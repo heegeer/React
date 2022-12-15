@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StForm = styled.div`
+const StForm = styled.form`
   width: 1200px;
   height: 90px;
   padding: 20px 50px;

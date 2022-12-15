@@ -9,7 +9,10 @@ const StDetail = styled.div`
     padding: 30px 40px 100px 40px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+
+    @media only screen and (max-width: 680px) {
+        width: 100%;
+    }
 `
 
 const DetailBox = styled.div`
@@ -23,6 +26,26 @@ const BtnBox = styled.div`
     justify-content: end;
     width: 55%;
     margin-right: 10px;
+
+    @media only screen and (max-width: 680px) {
+        width: 99%;
+    }
+`
+
+const MoveBtn = styled.button`
+    height: 35px;
+    width: 120px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: #8EC3B0;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    :hover {
+            opacity: 0.8;
+    }
 `
 
 const DetailTextBox = styled.div`
@@ -33,6 +56,10 @@ const DetailTextBox = styled.div`
     border-radius: 20px;
     border: 5px solid #9ED5C5;
     padding: 15px 30px 25px 30px;
+
+    @media only screen and (max-width: 680px) {
+        width: 99%;
+    }
 
 `
 
@@ -64,6 +91,10 @@ const Btn = styled.button`
     :hover {
         opacity: 0.8;
     }
+
+    @media only screen and (max-width: 520px) {
+        margin-right: 5px;
+    }
 `
 
-export { StDetail, DetailBox, BtnBox, DetailTextBox, ID, Title, Content, Btn }
+export { StDetail, DetailBox, MoveBtn, BtnBox, DetailTextBox, ID, Title, Content, Btn }

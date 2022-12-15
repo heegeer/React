@@ -37,7 +37,7 @@ export const editTodo = (payload) => {
 
 // Initial State
 const initialState = [
-        { id: uuidv4(), title: "운동하기", content: "운동해서 체력 기르자", isDone: false },
+        { id: uuidv4(), title: "리액트 정복", content: "리액트랑 친해지기", isDone: false },
         { id: uuidv4(), title: "코딩 공부하기", content: "성실하게! 열심히!", isDone: true },
     ]
 

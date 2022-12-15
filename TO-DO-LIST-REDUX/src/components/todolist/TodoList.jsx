@@ -36,6 +36,7 @@ function TodoList ({isDone}) {
                                     <TodoContent>{list.content}</TodoContent>
                                 </ListText>                        
                                 <TodoBtns>
+                                    {/* Btn에 props로 backgroundColor를 전달함 */}
                                     <Btn backgroundColor={"#8EC3B0"} 
                                     onClick={() => deleteHandler(list.id)}>삭제</Btn>
                                     <Btn backgroundColor={ list.isDone ? "#FF9F9F" : "#acaaed"}
