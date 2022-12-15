@@ -1,15 +1,11 @@
-import Header from "./components/header/Header";
-import Form from "./components/form/Form";
-import TodoList from "./components/todolist/TodoList";
+import Router from "./shared/Router";
 import './App.css';
+import Header from "./components/header/Header";
 
 function App () {
   return (
     <div className="wrap">
-      <Header />
-      <Form />
-      <TodoList isDone={false} />
-      <TodoList isDone={true} />
+      <Router />
     </div>
   );
 };

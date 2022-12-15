@@ -5,7 +5,7 @@ import { addTodo } from "../../redux/modules/todos";
 import './form.css'
 
 function Form() {
-  
+
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -22,26 +22,48 @@ function Form() {
 
   // [추가하기] 버튼 클릭했을 때 실행됨
   const addHandler = (e) => {
+
+    // 제목과 내용 모두 입력되었을 때
+    if ( title !== '' && content !== '' ) {
+      e.preventDefault();
+
+      // 새로 작성된 투두리스트 객체를 
+      // Action Creator인 addTodo 함수의 인자에 담아서 dispatch로 보냄
+      dispatch(
+        addTodo({
+          id: uuidv4(),
+          title: title,
+          content: content,
+          isDone: false,
+        })
+      )
+
+      // 추가하기 버튼 클릭 후 input 창 비우기
+      setTitle('')
+      setContent('')
+
+    // 제목과 내용을 모두 입력하지 않았을 때
+    } else if (title === '' && content === '') {
+      e.preventDefault();
+      document.querySelector('#title').focus()
+      alert('제목과 내용을 모두 입력해주세요.')
+
+    // 제목을 입력하지 않았을 때  
+    } else if (content !== '') {
+      document.querySelector('#title').focus()
+      e.preventDefault();
+      alert('제목을 입력해주세요.')
+
+    // 내용을 입력하지 않았을 때     
+    } else if (title !== '') {
+    document.querySelector('#content').focus()
     e.preventDefault();
-
-    // 새로 작성된 투두리스트 객체를 
-    // Action Creator인 addTodo 함수의 인자에 담아서 dispatch로 보냄
-    dispatch(
-      addTodo({
-        id: uuidv4(),
-        title: title,
-        content: content,
-        isDone: false,
-      })
-    )
-
-    // 추가하기 버튼 클릭 후 input 창 비우기
-    setTitle('')
-    setContent('')
+    alert('내용을 입력해주세요.')
+    }
   }
 
+  // 제목과 내용을 input에 입력해서 제출하는 부분
   return(
-    // 제목과 내용을 input에 입력해서 제출하는 부분
     <form className="form">
         <span>제목</span>
         <input id="title" name='title' value={title} method="post" onChange={inputContent}/>

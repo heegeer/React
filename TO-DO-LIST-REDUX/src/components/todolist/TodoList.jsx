@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteTodo } from "../../redux/modules/todos";
 import Button from '../button/Button';
 import './todolist.css';
@@ -24,6 +25,9 @@ function TodoList ({isDone}) {
                     return (
                         <div className="list-container">
                             <div className="list-card">
+                                <Link to={`/${list.id}`}>
+                                    <div className="detail"><span>상세보기</span></div>
+                                </Link>
                                 <div className="list_text">
                                     <h2 className="todo-title">{list.title}</h2>
                                     <p className="todo-content">{list.content}</p>
