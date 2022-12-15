@@ -99,21 +99,21 @@ const TodoBtns = styled.div`
     justify-content: center;
 `
 
-const DeleteBtn = styled.button`
-    margin-right: 15px;
+const Btn = styled.button`
+    margin-right: 12px;
     height: 35px;
     width: 100px;
     border-radius: 20px;
     border: transparent;
-    background-color: #8EC3B0;
     color: white;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    background-color: ${(props) => props.backgroundColor};
 
     :hover {
         opacity: 0.8;
     }
 `
 
-export { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, DeleteBtn }
+export { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, Btn }

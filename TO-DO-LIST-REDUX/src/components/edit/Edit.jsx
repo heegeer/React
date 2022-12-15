@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { editTodo } from "../../redux/modules/todos";
-import { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content } from "./styled";
+import { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content, Btn } from "./styled";
 
 const Edit = () => {
 
@@ -13,8 +13,8 @@ const Edit = () => {
     const todo = todos.find((list) => list.id === param.id);
     const navigate = useNavigate(`/${todo.id}`);
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [title, setTitle] = useState(todo.title);
+    const [content, setContent] = useState(todo.content);
 
     const inputContent = (e) => {
         if (e.target.name === 'title') {
@@ -48,11 +48,11 @@ const Edit = () => {
                     <ID>ID: {todo.id.slice(0, 4)}</ID>
                     <h2>{ todo.isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
                     <form>
-                        <input id="title" value={todo.title} name='title' method="post" onChange={inputContent} />
-                        <input id="coneent" value={todo.content} name='content' method="post" onChange={inputContent} />
+                        <input id="title" value={title} name='title' method="post" onChange={inputContent} />
+                        <input id="coneent" value={content} name='content' type="text" method="post" onChange={inputContent} />
                     </form>
-                    
-                    <button onClick={editHandler}>수정 완료</button>
+                    <Btn backgroundColor={"#8EC3B0"} 
+                    onClick={editHandler}>수정 완료</Btn>
                 </DetailTextBox>
             </DetailBox>
         </StDetail>

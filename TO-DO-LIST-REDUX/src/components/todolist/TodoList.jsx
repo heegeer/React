@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteTodo } from "../../redux/modules/todos";
-import Button from '../button/Button';
-import { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, DeleteBtn } from "./styled"
+import { deleteTodo, changeDone } from "../../redux/modules/todos";
+import { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, Btn } from "./styled"
 
 function TodoList ({isDone}) {
     
@@ -12,6 +11,11 @@ function TodoList ({isDone}) {
     // [삭제] 버튼 눌렀을 때 실행됨
     const deleteHandler = (id) => {
         dispatch(deleteTodo(id))
+    }
+
+    // [완료] 또는 [취소] 버튼 눌렀을 때 실행됨
+    const changeDoneHandler = (id) => {
+        dispatch(changeDone(id))   
     }
    
     return (
@@ -23,7 +27,7 @@ function TodoList ({isDone}) {
                 {todos.filter((list) => list.isDone === isDone)
                 .map((list) => {
                     return (
-                            <ListCard>
+                            <ListCard key={list.id}>
                                 <Link to={`/${list.id}`}>
                                     <Detail><span>상세보기</span></Detail>
                                 </Link>
@@ -32,8 +36,10 @@ function TodoList ({isDone}) {
                                     <TodoContent>{list.content}</TodoContent>
                                 </ListText>                        
                                 <TodoBtns>
-                                    <DeleteBtn onClick={() => deleteHandler(list.id)}>삭제</DeleteBtn>
-                                    <Button list={list} key={list.id}/>
+                                    <Btn backgroundColor={"#8EC3B0"} 
+                                    onClick={() => deleteHandler(list.id)}>삭제</Btn>
+                                    <Btn backgroundColor={ list.isDone ? "#FF9F9F" : "#acaaed"}
+                                    onClick={() => changeDoneHandler(list.id)}>{ list.isDone ? "취소" : "완료"}</Btn>
                                 </TodoBtns>
                             </ListCard>
                     );

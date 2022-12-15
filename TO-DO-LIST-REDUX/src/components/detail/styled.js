@@ -25,26 +25,10 @@ const BtnBox = styled.div`
     margin-right: 10px;
 `
 
-const MoveBtn = styled.button`
-    height: 35px;
-    width: 120px;
-    border-radius: 20px;
-    border: transparent;
-    background-color: #8EC3B0;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-
-    :hover {
-            opacity: 0.8;
-    }
-`
-
 const DetailTextBox = styled.div`
     box-sizing: border-box;
     width: 55%;
-    /* background-color: white; */
+    background-color: white;
     margin-top: 20px;
     border-radius: 20px;
     border: 5px solid #9ED5C5;
@@ -65,24 +49,8 @@ const Content = styled.p`
     margin: 15px 0 30px 0;
 `
 
-const DeleteBtn = styled.button`
-    margin-right: 15px;
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: transparent;
-    background-color: #8EC3B0;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-
-    :hover {
-        opacity: 0.8;
-    }
-`
-
-const DoneBtn = (props) =>  styled.button`
+const Btn = styled.button`
+    margin-right: 12px;
     height: 35px;
     width: 100px;
     border-radius: 20px;
@@ -91,12 +59,11 @@ const DoneBtn = (props) =>  styled.button`
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: ${props.backgroundColor};
+    background-color: ${(props) => props.backgroundColor};
 
     :hover {
         opacity: 0.8;
     }
 `
 
-
-export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content, DeleteBtn, DoneBtn }
+export { StDetail, DetailBox, BtnBox, DetailTextBox, ID, Title, Content, Btn }
