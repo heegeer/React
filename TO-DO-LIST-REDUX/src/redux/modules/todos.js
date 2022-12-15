@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO"
 const CHANGE_DONE_TODO = "CHANGE_DONE_TODO"
+const EDIT_TODO = "EDIT_TODO"
 
 // Action Creator
 export const addTodo = (payload) => {
@@ -23,6 +24,13 @@ export const deleteTodo = (payload) => {
 export const changeDone = (payload) => {
     return {
         type: CHANGE_DONE_TODO,
+        payload
+    }
+}
+
+export const editTodo = (payload) => {
+    return {
+        type: EDIT_TODO,
         payload
     }
 }
@@ -53,6 +61,12 @@ const todos = (state = initialState, action) => {
         let copy = [...state];
         return (
             copy.map((list) => list.id === action.payload ? {...list, isDone: !list.isDone} : list)
+        )
+    // 작성한 투두리스트 수정하기
+    case EDIT_TODO:
+        let copy2 = [...state];
+        return (
+            copy2.map((list) => list.id === action.payload.id ? action.payload : list)
         )
     default:
       return state;

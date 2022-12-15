@@ -3,11 +3,11 @@ import TodoList from "../todolist/TodoList";
 
 const Home = () => {
     return (
-        <div>
+        <>
             <Form />
             <TodoList isDone={false} />
             <TodoList isDone={true} />
-        </div>
+        </>
     )
 }
 

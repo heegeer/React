@@ -82,21 +82,20 @@ const DeleteBtn = styled.button`
     }
 `
 
-const DoneBtn = (props) =>  styled.button`
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: transparent;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: ${props.backgroundColor};
+// const DoneBtn = styled.button`
+//     height: 35px;
+//     width: 100px;
+//     border-radius: 20px;
+//     border: transparent;
+//     color: white;
+//     font-size: 16px;
+//     font-weight: bold;
+//     cursor: pointer;
+//     background-color: ${(props) => props.backgroundColor};
 
-    :hover {
-        opacity: 0.8;
-    }
-`
+//     :hover {
+//         opacity: 0.8;
+//     }
+// `
 
-
-export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content, DeleteBtn, DoneBtn }
+export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content, DeleteBtn }
