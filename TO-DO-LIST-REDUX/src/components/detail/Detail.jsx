@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Header from "../header/Header"
-import "./detail.css"
+import { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, Title, Content } from "./styled";
 
 function Detail()  {
 
@@ -9,19 +8,22 @@ function Detail()  {
     const param = useParams();
 
     const todo = todos.find((list) => list.id === param.id);
-    console.log("param.id:", param.id)
-    console.log("todo:", todo)
-    console.log(todos)
 
     return (
-        <div className="wrap">
-            {/* <Header /> */}
-            <div className="detail-container">
-                <Link to={"/"}>이전으로</Link>
-                <div>제목:{todo.title}</div>
-                <div>내용:{todo.content}</div>
-            </div>
-        </div>
+        <StDetail>
+            <DetailBox>
+                <BtnBox>
+                    <Link to={"/"}>
+                        <MoveBtn><span>이전으로</span></MoveBtn>
+                    </Link>
+                </BtnBox>
+                <DetailTextBox>
+                    <ID>ID: {todo.id.slice(0, 4)}</ID>
+                    <Title>{todo.title}</Title>
+                    <Content>{todo.content}</Content>
+                </DetailTextBox>
+            </DetailBox>
+        </StDetail>
     )
 }
 

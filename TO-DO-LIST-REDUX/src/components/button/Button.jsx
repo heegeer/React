@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { changeDone } from "../../redux/modules/todos";
-import './button.css'
+import DoneBtn from "./styled";
 
 function Button ({list}) { 
 
@@ -14,19 +14,19 @@ function Button ({list}) {
   // 투두리스트를 완료했을 때
   if (list.isDone === false) {
     return (
-      <button  
+      <DoneBtn 
         onClick={() => changeDoneHandler(list.id)}
         style={{backgroundColor: '#acaaed'}}
-        className="btn">완료</button>
+      >완료</DoneBtn>
     );
 
   // 투두리스트 완료를 취소했을 때
   } else if (list.isDone === true) {
     return (
-      <button 
+      <DoneBtn 
         onClick={() => changeDoneHandler(list.id)}
         style={{backgroundColor: '#FF9F9F'}}
-        className="btn">취소</button>
+      >취소</DoneBtn>
     );
   }
 }

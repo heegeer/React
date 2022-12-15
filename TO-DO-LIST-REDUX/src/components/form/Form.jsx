@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { addTodo } from "../../redux/modules/todos";
-import './form.css'
+import { StForm, PlusBtn } from "./styled";
 
 function Form() {
 
@@ -64,13 +64,13 @@ function Form() {
 
   // 제목과 내용을 input에 입력해서 제출하는 부분
   return(
-    <form className="form">
+    <StForm>
         <span>제목</span>
         <input id="title" name='title' value={title} method="post" onChange={inputContent}/>
         <span>내용</span>
         <input id="content" name='content' value={content} method="post" onChange={inputContent}/>
-        <button onClick={addHandler} className="plusBtn">추가하기</button>
-    </form>
+        <PlusBtn onClick={addHandler}>추가하기</PlusBtn>
+    </StForm>
   );
 };
 

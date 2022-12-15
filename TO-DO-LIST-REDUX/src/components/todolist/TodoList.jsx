@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteTodo } from "../../redux/modules/todos";
 import Button from '../button/Button';
-import './todolist.css';
+import { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, DeleteBtn } from "./styled"
 
 function TodoList ({isDone}) {
     
@@ -15,33 +15,31 @@ function TodoList ({isDone}) {
     }
    
     return (
-        <div className="list">
+        <List>
             {/* 제목 변경-isDone이 false면 Working, true면 Done */}
             <h2>{ isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
-            <div className="list-container">
+            <ListContainer>
                 {/* isDone 값 true/false에 따라 리스트를 필터링함 */}
                 {todos.filter((list) => list.isDone === isDone)
                 .map((list) => {
                     return (
-                        <div className="list-container">
-                            <div className="list-card">
+                            <ListCard>
                                 <Link to={`/${list.id}`}>
-                                    <div className="detail"><span>상세보기</span></div>
+                                    <Detail><span>상세보기</span></Detail>
                                 </Link>
-                                <div className="list_text">
-                                    <h2 className="todo-title">{list.title}</h2>
-                                    <p className="todo-content">{list.content}</p>
-                                </div>                        
-                                <div className="todo-button">
-                                    <button onClick={() => deleteHandler(list.id)} className="deleteBtn">삭제</button>
+                                <ListText>
+                                    <TodoTitle>{list.title}</TodoTitle>
+                                    <TodoContent>{list.content}</TodoContent>
+                                </ListText>                        
+                                <TodoBtns>
+                                    <DeleteBtn onClick={() => deleteHandler(list.id)}>삭제</DeleteBtn>
                                     <Button list={list} key={list.id}/>
-                                </div>
-                            </div>
-                        </div>
+                                </TodoBtns>
+                            </ListCard>
                     );
                 })}
-            </div>
-        </div>
+            </ListContainer>
+        </List>
     );
 };
 

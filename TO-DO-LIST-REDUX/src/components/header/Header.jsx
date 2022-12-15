@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import './header.css'
+import { StHeader } from "./styled";
 
 function Header() {
     return(
-      <div className="header">
+      <StHeader>
         <Link to={"/"}>
           <span>My Todo List</span>
         </Link>
         <span>React</span>
-      </div>
+      </StHeader>
     );
 };
 

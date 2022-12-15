@@ -1,6 +1,5 @@
 import Router from "./shared/Router";
 import './App.css';
-import Header from "./components/header/Header";
 
 function App () {
   return (

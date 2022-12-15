@@ -1,21 +1,49 @@
-.list{
+import styled from "styled-components";
+
+const List = styled.div`
     box-sizing: border-box;
     width: 1200px;
     display: flex;
     flex-direction: column;
     padding-left: 30px;
-}
 
-.list-container{
+    @media only screen and (max-width: 1200px) {
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 750px) {
+        padding: 0;
+
+        h2 {
+            display: flex;
+            justify-content: center;
+        }
+    }
+`
+
+const ListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
 
-.list-card{
+    @media only screen and (max-width: 1200px) {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    @media only screen and (max-width: 750px) {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+`
+
+const ListCard = styled.div`
     border: 5px solid #9ED5C5;
     border-radius: 20px;
-    padding: 10px 20px 30px 20px;
+    padding: 13px 20px 30px 20px;
     height: 210px;
     width: 300px;
     margin-right: 20px;
@@ -24,11 +52,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-}
+`
 
-.detail {
-    cursor: pointer;
+const Detail = styled.div`
     color: gray;
     text-decoration: underline;
     text-decoration-color: gray;
@@ -36,29 +62,29 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-}
 
-.detail:hover {
-    color: #8EC3B0;
-    text-decoration: underline;
-    text-decoration-color: #8EC3B0;
-}
-  
-.list_text{
+    :hover {
+        color: #8EC3B0;
+        text-decoration: underline;
+        text-decoration-color: #8EC3B0;
+    }
+`
+
+const ListText = styled.div`
     text-align: center;
-}
-  
-.todo-title {
+`
+
+const TodoTitle = styled.h2`   
     text-overflow: ellipsis;
     overflow: hidden;
     width: 250px;
     white-space: nowrap;
-    margin: 10px 0 10px 0;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
-}
-  
-.todo-content {
+`
+
+const TodoContent = styled.p`
     text-overflow: ellipsis;
     overflow: hidden;
     width: 250px;
@@ -66,14 +92,14 @@
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
-}
+`
 
-.todo-button {
+const TodoBtns = styled.div`
     display: flex;
     justify-content: center;
-}
-  
-.deleteBtn {
+`
+
+const DeleteBtn = styled.button`
     margin-right: 15px;
     height: 35px;
     width: 100px;
@@ -84,34 +110,10 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-}
 
-@media (max-width: 1200px) {
-    .list {
-        width: 100%;
+    :hover {
+        opacity: 0.8;
     }
+`
 
-    .list-container{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-}
-
-@media (max-width: 750px) {
-    .list {
-        padding: 0;
-    }
-
-    .list > h2 {
-        display: flex;
-        justify-content: center;
-    }
-
-    .list-container{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: center;
-    }
-}
+export { List, ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, DeleteBtn }
