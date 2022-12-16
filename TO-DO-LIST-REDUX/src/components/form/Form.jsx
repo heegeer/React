@@ -24,7 +24,7 @@ function Form() {
   const addHandler = (e) => {
 
     // 제목과 내용 모두 입력되었을 때
-    if ( title !== '' && content !== '' ) {
+    if ( title && content ) {
       e.preventDefault();
 
       // 새로 작성된 투두리스트 객체를 
@@ -43,19 +43,19 @@ function Form() {
       setContent('')
 
     // 제목과 내용을 모두 입력하지 않았을 때
-    } else if (title === '' && content === '') {
+    } else if ( !title && !content ) {
       e.preventDefault();
       document.querySelector('#title').focus()
       alert('제목과 내용을 모두 입력해주세요.')
 
     // 제목을 입력하지 않았을 때  
-    } else if (content !== '') {
+    } else if ( !content ) {
       document.querySelector('#title').focus()
       e.preventDefault();
       alert('제목을 입력해주세요.')
 
     // 내용을 입력하지 않았을 때     
-    } else if (title !== '') {
+    } else if ( !title ) {
     document.querySelector('#content').focus()
     e.preventDefault();
     alert('내용을 입력해주세요.')

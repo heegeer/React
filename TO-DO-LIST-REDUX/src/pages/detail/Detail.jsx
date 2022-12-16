@@ -14,8 +14,10 @@ function Detail()  {
 
     // [삭제] 버튼 눌렀을 때 실행됨
     const deleteHandler = (id) => {
-        navigate("/")
-        dispatch(deleteTodo(id))
+        if ( window.confirm("정말 삭제하시겠습니까?") ) {
+            navigate("/")
+            dispatch(deleteTodo(id))
+        }
     }
 
     // [완료] 또는 [취소] 버튼 눌렀을 때 실행됨

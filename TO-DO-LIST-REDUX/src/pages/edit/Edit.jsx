@@ -11,7 +11,7 @@ const Edit = () => {
     const param = useParams();
 
     const todo = todos.find((list) => list.id === param.id);
-    const navigate = useNavigate(`/${todo.id}`);
+    const navigate = useNavigate();
 
     // useState에 todo.title과 todo.content를 넣어서
     // input 창에 해당 id 값의 제목과 내용 띄우기
@@ -27,7 +27,7 @@ const Edit = () => {
         }
     }
 
-    // [수정] 버튼 클릭했을 때 실행됨
+    // [수정하기] 버튼 클릭했을 때 실행됨
     const editHandler = () => {
         navigate("/")
         dispatch(

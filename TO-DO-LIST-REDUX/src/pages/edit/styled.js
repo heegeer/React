@@ -6,7 +6,7 @@ const StDetail = styled.div`
     display: flex;
     flex-direction: column;
     /* background-color: #DEF5E5; */
-    padding: 30px 40px 100px 40px;
+    padding: 30px 40px 75px 40px;
     display: flex;
     flex-direction: column;
 
@@ -60,26 +60,50 @@ const DetailTextBox = styled.div`
     @media only screen and (max-width: 680px) {
         width: 99%;
     }
-
 `
 
 const ID = styled.p`
     margin: 0;
 `
 
-const Title = styled.h1`
-    margin: 10px 0 10px 0;
+const EditForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
 `
 
-const Content = styled.p`
+const TitleInput = styled.input`
+    border: transparent;
+    padding: 12px 5px;
+    font-size: 2em;
+    font-weight: bold;
+    white-space: normal;
+    border-bottom: 1px solid #B2B2B2;
+
+    :focus {
+        outline: none;
+    }
+`
+
+const ContentInput = styled.input`
+    border: transparent;
+    padding: 12px 5px;
     font-size: 20px;
-    margin: 15px 0 30px 0;
+    line-height: 1.38; 
+    white-space: normal;
+
+    :focus {
+        outline: none;
+    }
 `
 
 const Btn = styled.button`
     margin-right: 12px;
     height: 35px;
-    width: 100px;
+    width: 120px;
     border-radius: 20px;
     border: transparent;
     color: white;
@@ -91,10 +115,6 @@ const Btn = styled.button`
     :hover {
         opacity: 0.8;
     }
-
-    @media only screen and (max-width: 520px) {
-        margin-right: 5px;
-    }
 `
 
-export { StDetail, DetailBox, MoveBtn, BtnBox, DetailTextBox, ID, Title, Content, Btn }
+export { StDetail, DetailBox, BtnBox, MoveBtn, DetailTextBox, ID, EditForm, TitleInput, ContentInput, Btn }

@@ -80,8 +80,8 @@ const TodoTitle = styled.h2`
     width: 250px;
     white-space: nowrap;
     margin: 10px 0;
-    display: flex;
     justify-content: center;
+    text-align: center;
 `
 
 const TodoContent = styled.p`
@@ -90,8 +90,8 @@ const TodoContent = styled.p`
     width: 250px;
     white-space: nowrap;
     margin: 10px 0 20px 0;
-    display: flex;
     justify-content: center;
+    text-align: center;
 `
 
 const TodoBtns = styled.div`

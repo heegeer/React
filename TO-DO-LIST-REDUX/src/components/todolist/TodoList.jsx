@@ -10,7 +10,9 @@ function TodoList ({isDone}) {
 
     // [삭제] 버튼 눌렀을 때 실행됨
     const deleteHandler = (id) => {
-        dispatch(deleteTodo(id))
+        if ( window.confirm("정말 삭제하시겠습니까?") ) {
+            dispatch(deleteTodo(id))
+        }
     }
 
     // [완료] 또는 [취소] 버튼 눌렀을 때 실행됨
@@ -27,6 +29,7 @@ function TodoList ({isDone}) {
                 {todos.filter((list) => list.isDone === isDone)
                 .map((list) => {
                     return (
+                            // isDone 값에 따라 [취소] 또는 [완료]로 버튼이 변경됨
                             <ListCard key={list.id}>
                                 <Link to={`/${list.id}`}>
                                     <Detail><span>상세보기</span></Detail>
