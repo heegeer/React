@@ -11,9 +11,10 @@ const TodoCard = ({isDone}) => {
 
     useEffect(() => {
         dispatch(__getTodos());
-        console.log(dispatch)
         }, [dispatch]
     );
+
+    console.log(todos)
 
     if (isLoading) {
         return <div>로딩 중.....</div>

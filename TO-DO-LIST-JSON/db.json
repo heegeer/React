@@ -1,6 +1,16 @@
 {
   "todos": [
-    { "id": 1, "title": "리액트 정복", "content": "리액트랑 친해지기", "isDone": false },
-    { "id": 2, "title": "코딩 공부하기", "content": "성실하게! 열심히!", "isDone": true }
+    {
+      "id": 1,
+      "title": "리액트 정복",
+      "content": "리액트랑 친해지기",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "title": "코딩 공부하기",
+      "content": "성실하게! 열심히!",
+      "isDone": true
+    }
   ]
 }

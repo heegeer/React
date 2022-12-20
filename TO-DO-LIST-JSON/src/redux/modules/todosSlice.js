@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -17,7 +16,6 @@ export const __getTodos = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const data = await axios.get("http://localhost:3001/todos");
-            console.log("data:",data)
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -25,13 +23,30 @@ export const __getTodos = createAsyncThunk(
     }
 );
 
+export const __postTodos = createAsyncThunk(
+    "todos/postTodos",
+    async (payload, thunkAPI) => {
+        try {
+            // payload는 Form.jsx에서 [추가하기] 버튼 클릭했을 때 
+            // __postTodos의 인자에 담아 보낸 것-새로 작성한 Todo 객체
+            await axios.post("http://localhost:3001/todos", payload)
+            return thunkAPI.fulfillWithValue(payload);
+            // return console.log("성공")
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+
+
 export const todosSlice = createSlice({
     name: "todos",
     initialState, 
     reducers: {},
     extraReducers: {
-        // 네트워크 요청이 시작되면 로딩상태를 true로 변경한다.
         [__getTodos.pending]: (state) => {
+            // 네트워크 요청이 시작되면 로딩상태를 true로 변경한다.
             state.isLoading = true;
         },
         // Promise가 fullfilled일 때 dispatch함
@@ -40,14 +55,24 @@ export const todosSlice = createSlice({
             state.isLoading = false;
             // Store에 있는 todos에 서버에서 가져온 todos를 넣는다.
             state.todos = action.payload;
-            console.log("action:",action)
-            console.log("state:", state)
         },
         [__getTodos.rejected]: (state, action) => {
             // 에러가 발생했지만 네트워크 요청이 끝났으니 false로 변경한다.
             state.isLoading = false;
             // catch 된 error 객체를 state.error에 넣는다.
             state.error = action.payload
+        },
+
+        [__postTodos.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [__postTodos.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.todos = [...state.todos, action.payload]
+        },
+        [__postTodos.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.action = action.payload;
         }
     },
 })

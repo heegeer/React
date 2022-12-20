@@ -11,7 +11,7 @@ const useInput = () => {
 
     // 이 훅은 [ ] 을 반환하는데 
     // 첫번째는 value, 두번째는 핸들러를 반환한다.
-    return [value, handler];
+    return [value, setValue, handler];
 }
 
 export default useInput;
