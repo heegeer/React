@@ -1,37 +1,43 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { __getTodos, __deleteTodos } from "../../redux/modules/todosSlice";
+import { __getTodos, __deleteTodos, __changeDoneTodos } from "../../redux/modules/todosSlice";
 import { StDetail, DetailBox, MoveBtn, BtnBox, DetailTextBox, ID, Title, Content, Btn } from "./styled";
 
 function Detail()  {
 
-    const { isLoading, error, todos } = useSelector((state) => state.todos)
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const param = useParams();
-
-    console.log(todos)
 
     useEffect(() => {
         dispatch(__getTodos());
         }, [dispatch]
     );
+    
+    const navigate = useNavigate();
+    const param = useParams();
+    const { error, todos } = useSelector((state) => state.todos)
+    console.log("todos:",todos)
+   
 
-    if (isLoading) {
-        return <div>로딩 중.....</div>
-    }
+    const todo = todos.find((list) => list.id === param.id);
+    console.log("todo:",todo)
+
+    // if (isLoading) {
+    //     return <div>로딩 중.....</div>
+    // }
     if (error) {
         return <div>{error.massage}</div>
     }
-
-    const todo = todos.find((list) => list.id === param.id);
 
     const deleteHandler = (id) => {
         if ( window.confirm("정말 삭제하시겠습니까?")) {
             navigate("/")
             dispatch(__deleteTodos(id))
         }
+    }
+
+    const changeDoneHandler = (switchTodo) => {
+        dispatch(__changeDoneTodos(switchTodo))
     }
 
 
@@ -56,7 +62,12 @@ function Detail()  {
                     <Btn backgroundColor={"#8EC3B0"} 
                     onClick={() => deleteHandler(todo.id)}>삭제</Btn>
                     <Btn backgroundColor={ todo.isDone ? "#FF9F9F" : "#acaaed"}
-                    >{ todo.isDone ? "취소" : "완료"}</Btn>
+                        onClick={() => changeDoneHandler({
+                            id: todo.id, 
+                            title: todo.title, 
+                            content: todo.title, 
+                            isDone: !todo.isDone                       
+                    })}>{ todo.isDone ? "취소" : "완료"}</Btn>
                 </DetailTextBox>
             </DetailBox>
         </StDetail>

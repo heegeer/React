@@ -23,6 +23,8 @@ export const __getTodos = createAsyncThunk(
     }
 );
 
+// Detail, Edit 페이지에서 특정 id를 가진 객체 하나만 불러오기
+
 export const __postTodos = createAsyncThunk(
     "todos/postTodos",
     async (payload, thunkAPI) => {
@@ -30,9 +32,8 @@ export const __postTodos = createAsyncThunk(
             // payload는 Form.jsx에서 [추가하기] 버튼 클릭했을 때 
             // __postTodos의 인자에 담아 보낸 것-새로 작성한 Todo 객체
             await axios.post("http://localhost:3001/todos", payload);
-            
+                // axios.get("http://localhost:3001/todos");
             return thunkAPI.fulfillWithValue(payload);
-            // return console.log("성공")
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
@@ -56,13 +57,25 @@ export const __changeDoneTodos = createAsyncThunk(
     "todos/changeDoneTodos",
     async (payload, thunkAPI) => {
         try {
-            await axios.patch(`http://localhost:3001/todos/${payload}`);
-            return thunkAPI.fulfillWithValue(payload);
+            await axios.patch(`http://localhost:3001/todos/${payload.id}`, payload);
+            return thunkAPI.fulfillWithValue(payload.id);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
     }
-)
+);
+
+export const __editTodos = createAsyncThunk(
+    "todos/editTodos",
+    async (payload, thunkAPI) => {
+        try {
+            await await axios.patch(`http://localhost:3001/todos/${payload.id}`, payload);
+            return thunkAPI.fulfillWithValue(payload.id);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
 
 
 export const todosSlice = createSlice({
@@ -73,7 +86,6 @@ export const todosSlice = createSlice({
         [__getTodos.pending]: (state) => {
             // 네트워크 요청이 시작되면 로딩상태를 true로 변경한다.
             state.isLoading = true;
-            console.log("pending")
         },
         // Promise가 fullfilled일 때 dispatch함
         [__getTodos.fulfilled]: (state, action) => {
@@ -94,7 +106,7 @@ export const todosSlice = createSlice({
         },
         [__postTodos.fulfilled]: (state, action) => {
             state.isLoading = false;
-            state.todos = [...state.todos, action.payload];
+            // state.todos = [...state.todos, action.payload];
         },
         [__postTodos.rejected]: (state, action) => {
             state.isLoading = false;
@@ -112,7 +124,36 @@ export const todosSlice = createSlice({
         [__deleteTodos.rejected]: (state, action) => {
             state.isLoading = false;
             state.action = action.payload;
-        }
+        },
+
+        [__changeDoneTodos.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [__changeDoneTodos.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            let copy = [...state.todos];
+            console.log(action.payload)
+            state.todos = copy.map((list) => list.id === action.payload ? {...list, isDone: !list.isDone} : list)
+        },
+        [__changeDoneTodos.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.action = action.payload;
+        },
+
+        [__editTodos.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [__editTodos.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            let copy = [...state.todos];
+            console.log(action.payload)
+            state.todos = copy.map((list) => list.id === action.payload ? {...list, isDone: !list.isDone} : list)
+        },
+        [__editTodos.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.action = action.payload;
+        },
+
 
     },
 })

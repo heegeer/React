@@ -6,15 +6,12 @@ import { ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, Todo
 const TodoCard = ({isDone}) => {
 
     const dispatch = useDispatch();
-    const { isLoading, error, todos } = useSelector((state) => state.todos)
+    const { error, todos } = useSelector((state) => state.todos)
 
-    // console.log(todos)
+    // if (isLoading) {
+    //     return <div>로딩 중.....</div>
+    // } 
 
-    if (isLoading) {
-        return <div>로딩 중.....</div>
-    } else {
-        console.log(todos)
-    }
     if (error) {
         return <div>{error.massage}</div>
     }
@@ -25,8 +22,8 @@ const TodoCard = ({isDone}) => {
         }
     }
 
-    const changeDoneHandler = (id) => {
-        dispatch(__changeDoneTodos(id))
+    const changeDoneHandler = (switchTodo) => {
+        dispatch(__changeDoneTodos(switchTodo))
     }
    
     return (
@@ -50,7 +47,12 @@ const TodoCard = ({isDone}) => {
                                      onClick={() => deleteHandler(list.id)}
                                     >삭제</Btn>
                                     <Btn backgroundColor={ list.isDone ? "#FF9F9F" : "#acaaed"}
-                                     onClick={() => changeDoneHandler(list.id)}>{ list.isDone ? "취소" : "완료"}</Btn>
+                                     onClick={() => changeDoneHandler({
+                                     id: list.id, 
+                                     title: list.title, 
+                                     content: list.title, 
+                                     isDone: !list.isDone
+                                     })}>{ list.isDone ? "취소" : "완료"}</Btn>
                                 </TodoBtns>
                             </ListCard>
                     );
