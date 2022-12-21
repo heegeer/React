@@ -29,7 +29,8 @@ export const __postTodos = createAsyncThunk(
         try {
             // payload는 Form.jsx에서 [추가하기] 버튼 클릭했을 때 
             // __postTodos의 인자에 담아 보낸 것-새로 작성한 Todo 객체
-            await axios.post("http://localhost:3001/todos", payload)
+            await axios.post("http://localhost:3001/todos", payload);
+            
             return thunkAPI.fulfillWithValue(payload);
             // return console.log("성공")
         } catch (error) {
@@ -38,6 +39,30 @@ export const __postTodos = createAsyncThunk(
     }
 );
 
+export const __deleteTodos = createAsyncThunk(
+    "todos/deleteTodos",
+    async (payload, thunkAPI) => {
+        try {
+            // __deleteTodos dispatch할 때 id를 payload로 받아 왔음
+            await axios.delete(`http://localhost:3001/todos/${payload}`);
+            return thunkAPI.fulfillWithValue(payload);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+export const __changeDoneTodos = createAsyncThunk(
+    "todos/changeDoneTodos",
+    async (payload, thunkAPI) => {
+        try {
+            await axios.patch(`http://localhost:3001/todos/${payload}`);
+            return thunkAPI.fulfillWithValue(payload);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+)
 
 
 export const todosSlice = createSlice({
@@ -48,6 +73,7 @@ export const todosSlice = createSlice({
         [__getTodos.pending]: (state) => {
             // 네트워크 요청이 시작되면 로딩상태를 true로 변경한다.
             state.isLoading = true;
+            console.log("pending")
         },
         // Promise가 fullfilled일 때 dispatch함
         [__getTodos.fulfilled]: (state, action) => {
@@ -60,7 +86,7 @@ export const todosSlice = createSlice({
             // 에러가 발생했지만 네트워크 요청이 끝났으니 false로 변경한다.
             state.isLoading = false;
             // catch 된 error 객체를 state.error에 넣는다.
-            state.error = action.payload
+            state.error = action.payload;
         },
 
         [__postTodos.pending]: (state) => {
@@ -68,12 +94,26 @@ export const todosSlice = createSlice({
         },
         [__postTodos.fulfilled]: (state, action) => {
             state.isLoading = false;
-            state.todos = [...state.todos, action.payload]
+            state.todos = [...state.todos, action.payload];
         },
         [__postTodos.rejected]: (state, action) => {
             state.isLoading = false;
             state.action = action.payload;
+        
+        },
+
+        [__deleteTodos.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [__deleteTodos.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.todos = state.todos.filter((list) => (list.id !== action.payload));
+        },
+        [__deleteTodos.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.action = action.payload;
         }
+
     },
 })
 

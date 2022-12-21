@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { __getTodos } from "../../redux/modules/todosSlice";
+import { __changeDoneTodos, __deleteTodos } from "../../redux/modules/todosSlice";
 import { ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, TodoBtns, Btn } from "./styled"
 
 const TodoCard = ({isDone}) => {
@@ -9,18 +8,25 @@ const TodoCard = ({isDone}) => {
     const dispatch = useDispatch();
     const { isLoading, error, todos } = useSelector((state) => state.todos)
 
-    useEffect(() => {
-        dispatch(__getTodos());
-        }, [dispatch]
-    );
-
-    console.log(todos)
+    // console.log(todos)
 
     if (isLoading) {
         return <div>로딩 중.....</div>
+    } else {
+        console.log(todos)
     }
     if (error) {
         return <div>{error.massage}</div>
+    }
+
+    const deleteHandler = (id) => {
+        if ( window.confirm("정말 삭제하시겠습니까?")) {
+            dispatch(__deleteTodos(id))
+        }
+    }
+
+    const changeDoneHandler = (id) => {
+        dispatch(__changeDoneTodos(id))
     }
    
     return (
@@ -41,9 +47,10 @@ const TodoCard = ({isDone}) => {
                                 <TodoBtns>
                                     {/* Btn에 props로 backgroundColor를 전달함 */}
                                     <Btn backgroundColor={"#8EC3B0"} 
+                                     onClick={() => deleteHandler(list.id)}
                                     >삭제</Btn>
                                     <Btn backgroundColor={ list.isDone ? "#FF9F9F" : "#acaaed"}
-                                    >{ list.isDone ? "취소" : "완료"}</Btn>
+                                     onClick={() => changeDoneHandler(list.id)}>{ list.isDone ? "취소" : "완료"}</Btn>
                                 </TodoBtns>
                             </ListCard>
                     );

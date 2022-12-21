@@ -38,7 +38,7 @@ function Form() {
           type="text" value={title} onChange={onChangeTitleHandler} />
         <span>내용</span>
         <input id="content" name='content' method="post"
-           type="text" vlaue={content} onChange={onChangeContetnHandler} />
+           type="text" value={content} onChange={onChangeContetnHandler} />
         <PlusBtn onClick={addHandler}>추가하기</PlusBtn>
     </StForm>
   );
