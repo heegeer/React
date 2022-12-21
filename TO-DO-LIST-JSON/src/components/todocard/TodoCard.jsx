@@ -8,20 +8,20 @@ const TodoCard = ({isDone}) => {
     const dispatch = useDispatch();
     const { error, todos } = useSelector((state) => state.todos)
 
-    // if (isLoading) {
-    //     return <div>로딩 중.....</div>
-    // } 
+    console.log(todos)
 
     if (error) {
         return <div>{error.massage}</div>
     }
 
+    // [삭제] 버튼 눌렀을 때 실행됨
     const deleteHandler = (id) => {
         if ( window.confirm("정말 삭제하시겠습니까?")) {
             dispatch(__deleteTodos(id))
         }
     }
 
+    // [완료] 또는 [취소] 버튼 눌렀을 때 실행됨
     const changeDoneHandler = (switchTodo) => {
         dispatch(__changeDoneTodos(switchTodo))
     }

@@ -76,6 +76,7 @@ const TodoContent = styled.p`
 const TodoBtns = styled.div`
     display: flex;
     justify-content: center;
+    padding-left: 15px;
 `
 
 const Btn = styled.button`

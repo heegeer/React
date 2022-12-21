@@ -16,12 +16,33 @@ const Edit = () => {
     const navigate = useNavigate();
     const param = useParams();
     const { error, todos } = useSelector((state) => state.todos)
+    console.log("todos:",todos)
 
     const todo = todos.find((list) => list.id === param.id);
+    // console.log("todo:",todo)
 
-    const [title, setTitle] = useState(todo.title);
-    const [content, setContent] = useState(todo.content);
+    // useState에 todo.title과 todo.content를 넣어서
+    // input 창에 해당 id 값의 제목과 내용 띄우기
+    // 여기서 문제 발생 optional chaning 사용하면 todo.title을 불러오지 못함
+    const [title, setTitle] = useState(todo?.title);
+    const [content, setContent] = useState(todo?.content);
 
+    useEffect(() => {
+        console.log(todos)
+        // todos에 값이 없으면 아무것도 실행 x
+        if(todos.length < 1) return ;
+
+        // 새로고침 후 todos에 데이터가 들어왔을 때 
+        // input에 todo의 title과 content를 넣음
+        const todo = todos.find((list) => list.id === param.id);
+        setTitle(todo?.title);
+        setContent(todo?.content);
+
+    // 경고를 무시하겠다는 의미
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [todos]
+    );
+  
     if (error) {
         return <div>{error.massage}</div>
     }
@@ -35,10 +56,12 @@ const Edit = () => {
         }
     }
 
+    // [수정하기] 버튼 클릭했을 때 실행됨
     const editHandler = (e) => {
     e.preventDefault();
-    navigate(`/${todo.id}`)
+    navigate(`/${param.id}`)
 
+    // title과 content만 수정한 객체를 dispatch로 보냄
     dispatch(
       __editTodos({
         id: todo.id,
@@ -58,13 +81,13 @@ const Edit = () => {
         <StDetail>
             <DetailBox>
                 <BtnBox>
-                    <Link to={`/${todo.id}`}>
+                    <Link to={`/${todo?.id}`}>
                         <MoveBtn><span>이전으로</span></MoveBtn>
                     </Link>
                 </BtnBox>
                 <DetailTextBox>
-                    <ID>ID: {todo.id.slice(0, 8)}</ID>
-                    <h2>{ todo.isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
+                    <ID>ID: {todo?.id.slice(0, 8)}</ID>
+                    <h2>{ todo?.isDone ? "Done..! 🎉" : "Working.. 🔥"}</h2>
                     <EditForm>
                         {/* value에 title과 content의 useState(초기값)이 들어온다 */}
                         {/* autoFoucs로 컴포넌트가 렌더링될 때 title input창에 자동으로 포커스하기 */}
