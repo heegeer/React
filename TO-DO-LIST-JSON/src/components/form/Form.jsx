@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+import { v4 as uuidv4 } from "uuid";
 import useInput from "../../hooks/useInput";
 import { __postTodos } from "../../redux/modules/todosSlice";
 import { StForm, PlusBtn } from "./styled";
