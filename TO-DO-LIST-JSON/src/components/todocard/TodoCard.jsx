@@ -6,7 +6,11 @@ import { ListContainer, ListCard, Detail, ListText, TodoTitle, TodoContent, Todo
 const TodoCard = ({isDone}) => {
 
     const dispatch = useDispatch();
-    const { error, todos } = useSelector((state) => state.todos)
+    const { isLoading, error, todos } = useSelector((state) => state.todos)
+
+    if (isLoading) {
+        return <div>로딩 중입니다.....</div>
+    }
 
     if (error) {
         return <div>{error.massage}</div>
