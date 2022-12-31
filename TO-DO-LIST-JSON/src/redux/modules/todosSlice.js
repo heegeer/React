@@ -28,7 +28,7 @@ export const __getTodosById = createAsyncThunk(
     "todos/getTodosById",
     async (payload, thunkAPI) => {
         try {
-            const data = await axios.get(`http://localhost:3001/todos/${payload}`);
+            const data = await axios.get(`https://just-spotted-tangerine.glitch.me/todos/${payload}`);
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -42,8 +42,8 @@ export const __postTodos = createAsyncThunk(
         try {
             // payload는 Form.jsx에서 [추가하기] 버튼 클릭했을 때 
             // __postTodos의 인자에 담아 보낸 것-새로 작성한 Todo 객체
-            await axios.post("http://localhost:3001/todos", payload)
-            const data =  await axios.get("http://localhost:3001/todos")
+            await axios.post("https://just-spotted-tangerine.glitch.me/todoss", payload)
+            const data =  await axios.get("https://just-spotted-tangerine.glitch.me/todos")
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -56,7 +56,7 @@ export const __deleteTodos = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             // __deleteTodos dispatch할 때 id를 payload로 받아 왔음
-            await axios.delete(`http://localhost:3001/todos/${payload}`);
+            await axios.delete(`https://just-spotted-tangerine.glitch.me/todos/${payload}`);
             return thunkAPI.fulfillWithValue(payload);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -68,7 +68,7 @@ export const __changeDoneTodos = createAsyncThunk(
     "todos/changeDoneTodos",
     async (payload, thunkAPI) => {
         try {
-            await axios.patch(`http://localhost:3001/todos/${payload.id}`, payload);
+            await axios.patch(`https://just-spotted-tangerine.glitch.me/todoss/${payload.id}`, payload);
             return thunkAPI.fulfillWithValue(payload.id);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -80,7 +80,7 @@ export const __editTodos = createAsyncThunk(
     "todos/editTodos",
     async (payload, thunkAPI) => {
         try {
-            await axios.patch(`http://localhost:3001/todos/${payload.id}`, payload);
+            await axios.patch(`https://just-spotted-tangerine.glitch.me/todos/${payload.id}`, payload);
             return thunkAPI.fulfillWithValue(payload);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
