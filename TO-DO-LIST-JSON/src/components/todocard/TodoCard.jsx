@@ -8,8 +8,6 @@ const TodoCard = ({isDone}) => {
     const dispatch = useDispatch();
     const { error, todos } = useSelector((state) => state.todos)
 
-    console.log(todos)
-
     if (error) {
         return <div>{error.massage}</div>
     }

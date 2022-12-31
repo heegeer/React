@@ -14,12 +14,10 @@ function Detail()  {
     );
     
     const { isLoading, error, todos } = useSelector((state) => state.todos)
-    console.log("todos:",todos)
     const navigate = useNavigate();
     const param = useParams();
    
     const todo = todos.find((list) => list.id === param.id);
-    // console.log("todo:",todo)
 
     if (isLoading) {
        return <div/>

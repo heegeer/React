@@ -16,10 +16,8 @@ const Edit = () => {
     const navigate = useNavigate();
     const param = useParams();
     const { error, todos } = useSelector((state) => state.todos)
-    console.log("todos:",todos)
 
     const todo = todos.find((list) => list.id === param.id);
-    // console.log("todo:",todo)
 
     // useState에 todo.title과 todo.content를 넣어서
     // input 창에 해당 id 값의 제목과 내용 띄우기
@@ -28,7 +26,6 @@ const Edit = () => {
     const [content, setContent] = useState(todo?.content);
 
     useEffect(() => {
-        console.log(todos)
         // todos에 값이 없으면 아무것도 실행 x
         if(todos.length < 1) return ;
 

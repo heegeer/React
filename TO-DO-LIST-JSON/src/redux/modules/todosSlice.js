@@ -15,7 +15,7 @@ export const __getTodos = createAsyncThunk(
     // 두 번째 인자: 콜백함수
     async (payload, thunkAPI) => {
         try {
-            const data = await axios.get("http://localhost:3001/todos");
+            const data = await axios.get("https://just-spotted-tangerine.glitch.me/todos");
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -42,7 +42,7 @@ export const __postTodos = createAsyncThunk(
         try {
             // payload는 Form.jsx에서 [추가하기] 버튼 클릭했을 때 
             // __postTodos의 인자에 담아 보낸 것-새로 작성한 Todo 객체
-            await axios.post("https://just-spotted-tangerine.glitch.me/todoss", payload)
+            await axios.post("https://just-spotted-tangerine.glitch.me/todos", payload)
             const data =  await axios.get("https://just-spotted-tangerine.glitch.me/todos")
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
@@ -68,7 +68,7 @@ export const __changeDoneTodos = createAsyncThunk(
     "todos/changeDoneTodos",
     async (payload, thunkAPI) => {
         try {
-            await axios.patch(`https://just-spotted-tangerine.glitch.me/todoss/${payload.id}`, payload);
+            await axios.patch(`https://just-spotted-tangerine.glitch.me/todos/${payload.id}`, payload);
             return thunkAPI.fulfillWithValue(payload.id);
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -96,7 +96,6 @@ export const todosSlice = createSlice({
         [__getTodos.pending]: (state) => {
             // 네트워크 요청이 시작되면 로딩상태를 true로 변경한다.
             state.isLoading = true;
-            console.log("pengding")
         },
         // Promise가 fullfilled일 때 dispatch함
         [__getTodos.fulfilled]: (state, action) => {
@@ -104,7 +103,6 @@ export const todosSlice = createSlice({
             state.isLoading = false;
             // Store에 있는 todos에 서버에서 가져온 todos를 넣는다.
             state.todos = action.payload;
-            console.log("fulfilled")
         },
         [__getTodos.rejected]: (state, action) => {
             // 에러가 발생했지만 네트워크 요청이 끝났으니 false로 변경한다.
@@ -123,7 +121,6 @@ export const todosSlice = createSlice({
             state.isLoading = false;
             // Store에 있는 todos에 서버에서 가져온 todos를 넣는다.
             state.todos = action.payload;
-            console.log("action.payload:",action.payload)
         },
         [__getTodosById.rejected]: (state, action) => {
             // 에러가 발생했지만 네트워크 요청이 끝났으니 false로 변경한다.
